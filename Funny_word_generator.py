@@ -28,18 +28,25 @@ def linear_congruential_generator(a,c,m,seed,N):
 random = linear_congruential_generator(A,71,371,seed,total_rnd)
 dice = [int(d*99) for d in random]
 
+random2 = linear_congruential_generator(A,71,371,seed+1,total_rnd)
+
 dict = []
 lex = []
 
-for i in range(len(dice)):
+i = 0
+bit = 0
+while( i < len(dice)):
 	count = 0
-	letters =''
-	if i%2==0:
-		letters= letters+(consonants[dice[i]%19])
+	if (i+bit)%2==0:
+		dict.append(consonants[dice[i]%19])
+		if(random2[i]<0.33 and i+1 < len(dice)):
+			dict.append(consonants[dice[i+1]%19])
+			i = i + 1
+			bit = bit + 1
 	else:
-		letters = letters+(vowels[dice[i]%5])
+		dict.append(vowels[dice[i]%5])
 	#count+=1
-	dict.append(letters)
+	i = i+ 1
 
 for i in range(0,len(dict)-word_length+1,word_length):
     
@@ -52,4 +59,5 @@ for i in range(0,len(dict)-word_length+1,word_length):
 print ("\nSome random funny sounding words are as follows: \n ------------------------------------------------\n", end='')
 for i in range(len(lex)):
     print (lex[i], end=' ')
+print("\n")
 #print len(dict)
