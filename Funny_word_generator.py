@@ -39,7 +39,7 @@ while( i < len(dice)):
 	count = 0
 	if (i+bit)%2==0:
 		dict.append(consonants[dice[i]%19])
-		if(random2[i]<0.33 and i+1 < len(dice)):
+		if(random2[i]<0.2 and i+1 < len(dice)):
 			dict.append(consonants[dice[i+1]%19])
 			i = i + 1
 			bit = bit + 1
